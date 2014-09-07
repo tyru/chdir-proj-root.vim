@@ -37,7 +37,6 @@ function! s:is_root_project_dir(dir)
 endfunction
 
 function! s:lookup_repo(dir)
-    PP! a:dir
     " Assert isdirectory(a:dir)
 
     let parent = s:Filepath.dirname(a:dir)
