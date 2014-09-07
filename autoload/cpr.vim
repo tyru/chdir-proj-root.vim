@@ -8,6 +8,7 @@ set cpo&vim
 
 
 let s:Vital = vital#of('cpr')
+let s:Prelude = s:Vital.import('Prelude')
 let s:Filepath = s:Vital.import('System.Filepath')
 unlet s:Vital
 
@@ -18,36 +19,14 @@ function! cpr#lookup_cd(args)
     " Get fullpath.
     let dir = fnamemodify(dir, ':p')
     if !isdirectory(dir)
-        call s:warn("No such directory: " . dir)
+        call s:warn("No such a directory: " . dir)
         return
     endif
-    let dir = s:lookup_repo(dir)
+    let dir = s:Prelude.path2project_directory(dir)
     if dir !=# ''
         execute g:cpr_cd_command dir
     else
-        call s:warn('Not found project directory.')
-    endif
-endfunction
-
-" TODO: Add more VCS dir
-" TODO: ...And add the function to vital.
-function! s:is_root_project_dir(dir)
-    " .git may be a file when its repository is a submodule.
-    return isdirectory(s:Filepath.join(a:dir, '.git'))
-    \   || filereadable(s:Filepath.join(a:dir, '.git'))
-    \   || isdirectory(s:Filepath.join(a:dir, '.hg'))
-endfunction
-
-function! s:lookup_repo(dir)
-    " Assert isdirectory(a:dir)
-
-    let parent = s:Filepath.dirname(a:dir)
-    if a:dir ==# parent    " root
-        return ''
-    elseif s:is_root_project_dir(a:dir)
-        return a:dir
-    else
-        return s:lookup_repo(parent)
+        call s:warn('Not found a project directory.')
     endif
 endfunction
 
