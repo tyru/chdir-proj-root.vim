@@ -61,6 +61,12 @@ CPRLookupCD [{dir}]					*CPRLookupCD*
 	from {dir} to filesystem root.
 	If {dir} was not supplied, {dir} is "%:p:h".
 
+	About how to look up project root,
+	See |Vital.Prelude.path2project_directory()|.
+	(If you have not installed vital,
+	 See the following URL:
+	 https://github.com/vim-jp/vital.vim/blob/0d9c8996521eaff2054358c48fa17cd303a21d25/doc/vital-prelude.txt#L216-L235
+
 }}}
 }}}
 ==============================================================================
