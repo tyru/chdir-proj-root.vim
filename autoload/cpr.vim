@@ -29,6 +29,8 @@ function! cpr#lookup_cd(args)
     endif
 endfunction
 
+" TODO: Add more VCS dir
+" TODO: ...And add the function to vital.
 function! s:is_root_project_dir(dir)
     " .git may be a file when its repository is a submodule.
     return isdirectory(s:Filepath.join(a:dir, '.git'))
